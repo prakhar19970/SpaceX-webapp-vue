@@ -1,45 +1,17 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
+  <q-layout view="hHh Lpr lFf" class="fixed">
+    <div id="main-toolbar" class="toolbar">
+      <q-img class="main-logo" src="../assets/svg/spaceX-white-logo.svg"/>
+      <q-tabs v-model="tab" shrink>
+        <q-tab name="tab1" @click="navigateTo('Home')">
+          <div class="flex items-center justify-center"><q-icon name="home" size="sm" class="q-mr-sm"/>Home</div>
+          </q-tab>
+        <q-tab name="tab2" @click="navigateTo('Launch Form')">
+          <div class="flex items-center justify-center"><q-icon name="rocket" size="sm" class="q-mr-sm"/>Launch Form</div>
+          </q-tab>
+      </q-tabs>
+    </div>
+    <q-page-container class="page-wrapper" @scroll="onPageScroll">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -47,71 +19,63 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
   },
 
   data () {
+    const tab = 'tab1'
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksList
+      tab
     }
   },
 
   methods: {
-    toggleLeftDrawer () {
-      this.leftDrawerOpen = !this.leftDrawerOpen
+    navigateTo (pageName: string) {
+      console.log(pageName)
+      this.$router.push({ name: pageName })
+    },
+    onPageScroll (event: Event): void {
+      const element = event.target as HTMLElement
+      const toolbarElement = document.getElementById('main-toolbar') as HTMLElement
+      if (element && toolbarElement && element.scrollTop >= 400) {
+        toolbarElement.classList.add('blur-effect')
+      } else {
+        toolbarElement.classList.remove('blur-effect')
+      }
     }
   }
 })
 </script>
+<style lang="scss" scoped>
+  .toolbar{
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color:#ffffff;
+    justify-content: space-between;
+    background: transparent;
+    height: 80px;
+    z-index: 1;
+    transition: 0.5s ease;
+  }
+  .blur-effect{
+    backdrop-filter: blur(15px);
+  }
+  .page-wrapper{
+    background: #121212;
+    overflow-y:scroll;
+    height: 100vh;
+    max-height: 100vh;
+  }
+  .main-logo{
+    height: 80px;
+    width: 250px;
+  }
+</style>
