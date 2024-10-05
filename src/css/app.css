@@ -1,1 +1,20 @@
 /* app global css */
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.fw-500{
+    font-weight: 500;
+}
+.fw-600{
+    font-weight: 600;
+}
+.f-14{
+    font-size: 14px;
+}
+.f-16{
+    font-size: 16px;
+}
+.f-24{
+    font-size: 24px;
+}
