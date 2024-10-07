@@ -68,7 +68,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .homepage-wrapper{
-  background: #121212;
+  background: $surface-dark-main;
   overflow-y:scroll;
   height: 94vh;
   max-height: 94vh;
@@ -84,8 +84,8 @@ export default defineComponent({
   flex-grow: 1;
   width: 350px;
   box-shadow: 0 1px 5px #fff3, 0 2px 2px #ffffff24, 0 3px 1px -2px #ffffff1f;
-  background: #1d1d1d;
-  color: #ffffff;
+  background: $surface-dark-1;
+  color: $primary;
   border-radius: 12px;
   padding: 16px;
   gap: 8px;

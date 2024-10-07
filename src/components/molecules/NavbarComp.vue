@@ -71,7 +71,7 @@ export default defineComponent({
     left: 0;
     bottom: 0;
     right: 0;
-    color:#ffffff;
+    color: $primary;
     justify-content: space-between;
     background: transparent;
     height: 80px;

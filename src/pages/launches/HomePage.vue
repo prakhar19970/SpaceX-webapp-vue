@@ -101,7 +101,7 @@ export default defineComponent({
 }
 .hero-title{
   font-size: 72px;
-  color: #ffffff;
+  color: $primary;
   text-align: center;
 }
 .cards-section{

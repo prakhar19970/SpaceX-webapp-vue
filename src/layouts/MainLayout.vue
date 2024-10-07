@@ -66,7 +66,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
   .page-wrapper{
-    background: #121212;
+    background: $surface-dark-main;
     overflow-y:scroll;
     height: 100vh;
   }
