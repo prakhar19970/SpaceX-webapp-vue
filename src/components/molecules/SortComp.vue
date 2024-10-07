@@ -58,19 +58,15 @@ export default defineComponent({
       default: () => []
     }
   },
-  mounted () {
-    if (this.sortFilter) {
-      this.selectedOption = this.sortFilter
-    }
-  },
   methods: {
-    ...mapActions('missions', ['sortLisitng', 'reloadState']),
+    ...mapActions('missions', ['sortListByFilter', 'reloadState', 'resetSort']),
     selectOption (option: SortOptions) {
       this.selectedOption = option
-      this.sortLisitng(option)
+      this.sortListByFilter(option)
     },
     reset () {
       this.selectedOption = {} as SortOptions
+      this.resetSort()
       this.reloadState()
     }
   }

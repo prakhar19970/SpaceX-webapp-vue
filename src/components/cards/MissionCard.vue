@@ -1,9 +1,9 @@
 <template>
-  <div class="card" v-for="launchData in launchList" :key="launchData.id" @click="goToLaunchInfoPage(launchData.id)">
+  <div class="card" v-for="launchData in launchList" :key="launchData?.id" @click="goToLaunchInfoPage(launchData?.id)">
     <div class="flex justify-between items-center no-wrap">
-      <div class="card-title text-white ellipsis q-mr-md">{{ launchData.mission_name }}</div>
+      <div class="card-title text-white ellipsis q-mr-md">{{ launchData?.mission_name }}</div>
       <info-text-comp
-        v-if="launchData?.launch_date_utc"
+        v-if="launchData?.launch_year"
         class="card-body-title" icon-name="event"
         :info-text="launchData.launch_year"
       />
@@ -21,7 +21,7 @@
     <template v-else>
       Mission Details not available. <br>Click More to See other details.
     </template>
-    <div class="flex flex-1 items-end justify-end" @click.stop="goToLaunchInfoPage(launchData.id)">
+    <div class="flex flex-1 items-end justify-end" @click.stop="goToLaunchInfoPage(launchData?.id)">
       <div class="text-orange-4">More...</div>
     </div>
   </div>
@@ -31,6 +31,7 @@
 import { defineComponent, PropType } from 'vue'
 import InfoTextComp from '../atoms/InfoTextComp.vue'
 import mixins from '@mixins/mixins'
+import { useQuasar } from 'quasar'
 import { LaunchInfo } from '@models/launchModel'
 export default defineComponent({
   name: 'MissionCard',
@@ -43,9 +44,23 @@ export default defineComponent({
       default: () => []
     }
   },
+  setup () {
+    const q$ = useQuasar()
+
+    return { q$ }
+  },
   methods: {
     goToLaunchInfoPage (launchId: string) {
-      this.$router.push({ name: 'Launch Details Page', params: { id: launchId } })
+      if (launchId) {
+        this.$router.push({ name: 'Launch Details Page', params: { id: launchId } })
+      } else {
+        this.q$.notify({
+          color: 'indigo-4',
+          position: 'top',
+          icon: 'warning',
+          message: 'Launch Id not Found'
+        })
+      }
     }
   }
 })

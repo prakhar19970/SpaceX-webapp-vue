@@ -35,6 +35,9 @@ body {
     cursor: pointer;
 }
 
-.w-100{
+.width-100{
     width: 100%;
+}
+.width-70{
+    width: 70%;
 }

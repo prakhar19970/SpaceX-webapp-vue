@@ -19,12 +19,12 @@ const mutation: MutationTree<MissionStateInterface> = {
   setSortFilter (state, payload) {
     state.sortFilter = payload
 
-    if (payload && payload.type === 'asc') {
-      state.launchList.sort((previousItem, nextItem) =>
-        Number(previousItem[payload.key]) - Number(nextItem[payload.key]))
-    } else {
+    if (payload && payload.type === 'desc') {
       state.launchList.sort((previousItem, nextItem) =>
         Number(nextItem[payload.key]) - Number(previousItem[payload.key]))
+    } else {
+      state.launchList.sort((previousItem, nextItem) =>
+        Number(previousItem[payload.key]) - Number(nextItem[payload.key]))
     }
   }
 }

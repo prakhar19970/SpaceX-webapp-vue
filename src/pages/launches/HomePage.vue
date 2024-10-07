@@ -43,7 +43,7 @@ export default defineComponent({
     // Sort Options List for the Sort Filter
     const sortOptions: SortOptions[] = [
       { name: 'Launch year', key: 'launch_year', type: 'asc' },
-      { name: 'Launch year', key: 'launch_year', type: 'dsc' }
+      { name: 'Launch year', key: 'launch_year', type: 'desc' }
     ]
     return { launchMissionsList, loading, loader, heroImg, sortOptions }
   },
