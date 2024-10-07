@@ -96,9 +96,9 @@ export default defineComponent({
     position: relative;
 }
 .input-field {
-    background: #1d1d1d;
+    background: $surface-dark-1;
     border-radius: 12px;
-    color: #ffffff;
+    color: $primary;
     padding: 0px 8px;
     width: 100%;
 }
@@ -109,7 +109,7 @@ export default defineComponent({
     position: absolute;
     top: 70px;
     width: 100%;
-    background: #ffffff;
+    background: $primary;
     border-radius: 12px;
     z-index: 2;
 }

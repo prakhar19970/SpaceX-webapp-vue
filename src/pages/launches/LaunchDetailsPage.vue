@@ -100,7 +100,7 @@ export default defineComponent({
     padding:24px;
 }
 .link-text{
-  color: #ffffff;
+  color: $primary;
   overflow-wrap: anywhere;
 }
 .mission-image{

@@ -44,8 +44,8 @@
         :error="vuelidate?.form?.details?.$error || vuelidate.form?.details?.minLength.$invalid"
         :error-message="vuelidate.form?.details?.minLength.$invalid ? 'Mission Details should have at least 10 letters' : vuelidate?.form?.details?.required ? 'Mission Details are required' : ''"
       />
-      <div class="flex width-70 justify-end">
-      <q-btn color="indigo-6" type="submit" icon="rocket_launch" label="Submit" />
+      <div class="submit-button-container">
+        <q-btn class="submit-button" color="indigo-6" type="submit" icon="rocket_launch" label="Submit" />
       </div>
     </q-form>
   </div>
@@ -133,13 +133,15 @@ export default defineComponent({
   padding-top: 70px;
 }
 .page-title{
-  color: #ffffff;
+  color: $primary;
   font-size: 48px;
+  font-weight: 500;
   padding-left: 24px;
+  padding-right: 24px;
 }
 .input-field{
   background: #2d2d2d;
-  color:white;
+  color: $primary;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   width: 70%;
@@ -151,13 +153,18 @@ export default defineComponent({
   gap: 16px;
   align-items: center;
 }
+.submit-button-container{
+  display: flex;
+  justify-content: flex-end;
+  width: 70%;
+}
 :deep(){
   .q-field__native{
     // background: #2d2d2d;
     border-radius: 12px;
   }
   .q-field__native, .q-field__label{
-    color:white;
+    color: $primary;
     padding-left: 8px;
   }
   .q-field__bottom{
@@ -168,6 +175,20 @@ export default defineComponent({
   }
   .q-field__label{
     padding-left: 8px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .input-field {
+    width: 100%;
+  }
+  .page-title{
+    font-size: 32px;
+  }
+  .submit-button-container{
+    width: 100%;
+  }
+  .submit-button{
+    width: 100%;
   }
 }
 </style>
