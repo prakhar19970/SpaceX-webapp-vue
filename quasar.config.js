@@ -9,7 +9,6 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require('quasar/wrappers')
-const path = require('path')
 module.exports = configure(function (/* ctx */) {
   return {
     eslint: {
@@ -56,11 +55,22 @@ module.exports = configure(function (/* ctx */) {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
         node: 'node16'
       },
+      alias: {
+        '@assets': 'src/assets',
+        '@models': 'src/models',
+        '@mixins': 'src/mixins',
+        '@css': 'src/css',
+        '@components': 'src/components',
+        '@boot': 'src/boot',
+        '@constants': 'src/constants',
+        '@pages': 'src/pages',
+        '@store': 'src/store'
+      },
 
       vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
-      vueOptionsAPI: true,
+      // vueOptionsAPI: true,
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 

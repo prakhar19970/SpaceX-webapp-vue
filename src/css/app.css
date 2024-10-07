@@ -3,18 +3,38 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-.fw-500{
+.fw-500 {
     font-weight: 500;
 }
-.fw-600{
+
+.fw-600 {
     font-weight: 600;
 }
-.f-14{
+
+.f-14 {
     font-size: 14px;
 }
-.f-16{
+
+.f-16 {
     font-size: 16px;
 }
-.f-24{
+
+.f-24 {
     font-size: 24px;
+}
+
+.flex-1 {
+    flex-grow: 1
+}
+
+.blur-effect{
+    backdrop-filter: blur(15px);
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.w-100{
+    width: 100%;
 }
