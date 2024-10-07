@@ -26,6 +26,10 @@ export default defineComponent({
         return `${stringValue.slice(0, limit)}....`
       }
       return stringValue
+    },
+    getCurrentYear () {
+      const date = new Date()
+      return date.getFullYear()
     }
   }
 })

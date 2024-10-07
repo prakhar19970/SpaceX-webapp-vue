@@ -66,7 +66,7 @@ export default defineComponent({
   methods: {
     getLaunchInfoById (launchId: string) {
       const missionsData = JSON.parse(localStorage.spaceXLaunchesData)
-      const index = missionsData.findIndex((launchData : LaunchInfo) => launchData.id === launchId)
+      const index = missionsData.findIndex((launchData : LaunchInfo) => launchData?.id === launchId)
       this.missionDetails = missionsData[index]
     },
     onPageScroll (event: Event): void {
@@ -74,7 +74,7 @@ export default defineComponent({
       if (element) {
         const scrollTop = element.scrollTop
         const toolbarElement = document.getElementById('main-toolbar') as HTMLElement
-        if (toolbarElement && scrollTop >= 30) {
+        if (toolbarElement && scrollTop >= 10) {
           toolbarElement.classList.add('blur-effect')
         } else {
           toolbarElement.classList.remove('blur-effect')
@@ -88,7 +88,9 @@ export default defineComponent({
 .details-page-wrapper{
     display: flex;
     flex-direction: column;
-    padding-top:80px;
+    height: 100vh;
+    overflow-y: scroll;
+    padding-top: 80px;
 }
 .details-wrapper{
     display: flex;

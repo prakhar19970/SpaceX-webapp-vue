@@ -17,9 +17,9 @@
             </template>
         </q-input>
         <q-list v-if="filteredOptions && filteredOptions.length > 0" bordered separator class="options-wrapper">
-            <q-item v-for="option in filteredOptions" :key="option.id" clickable v-ripple>
+            <q-item v-for="option in filteredOptions" :key="option?.id" clickable v-ripple>
                 <q-item-section @click="selectOption(option)">
-                    {{ option.mission_name }}, {{ option.rocket.rocket_name }}, {{ option.launch_year }}
+                    {{ option?.mission_name }}, {{ option?.rocket.rocket_name }}, {{ option?.launch_year }}
                 </q-item-section>
             </q-item>
         </q-list>
@@ -41,7 +41,7 @@ export default defineComponent({
   },
   mixins: [mixins],
   computed: {
-    ...mapGetters('missions', ['searchQuery', 'allLaunchMissionsData'])
+    ...mapGetters('missions', ['searchQuery', 'allLaunchMissionsData', 'sortFilter'])
   },
   mounted () {
     if (this.searchQuery) {
@@ -69,7 +69,7 @@ export default defineComponent({
       this.searchTerm = `${option.mission_name}, ${option.rocket.rocket_name}, ${option.launch_year}`
       this.updateSearchQuery(this.searchTerm)
       this.filteredOptions = []
-      this.getLaunchCardById(option.id)
+      this.getLaunchCardById(option?.id)
     },
     clearSearchInput () {
       this.searchTerm = ''

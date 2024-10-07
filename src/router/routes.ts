@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 import LaunchDetailsPage from 'src/pages/launches/LaunchDetailsPage.vue'
 import HomePage from 'src/pages/launches/HomePage.vue'
-import LaunchFormPage from 'src/pages/launches/LaunchFormPage.vue'
+import LaunchFormPage from 'src/pages/forms/LaunchFormPage.vue'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
