@@ -9,5 +9,6 @@ export interface LaunchInfo {
     details: string,
     links: {
       article_link: string
-    }
+    },
+    [key: string]: any
   }

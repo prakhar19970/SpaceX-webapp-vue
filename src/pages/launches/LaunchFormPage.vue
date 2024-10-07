@@ -1,6 +1,6 @@
 <template>
     <q-page class="row items-center justify-evenly">
-      <div class="row no-wrap items-center justify-evenly">
+      <div class="row no-wrap items-center justify-evenly text-white">
         Launch Form Page
         *we will use Vuelidate in this form
       </div>

@@ -1,78 +1,74 @@
 <template>
   <q-layout view="hHh Lpr lFf" class="fixed">
-    <div id="main-toolbar" class="toolbar">
-      <q-img class="main-logo" src="../assets/svg/spaceX-white-logo.svg"/>
-      <q-tabs v-model="tab" shrink>
-        <q-tab name="tab1" @click="navigateTo('Home')">
-          <div class="flex items-center justify-center"><q-icon name="home" size="sm" class="q-mr-sm"/>Home</div>
-          </q-tab>
-        <q-tab name="tab2" @click="navigateTo('Launch Form')">
-          <div class="flex items-center justify-center"><q-icon name="rocket" size="sm" class="q-mr-sm"/>Launch Form</div>
-          </q-tab>
-      </q-tabs>
-    </div>
-    <q-page-container class="page-wrapper" @scroll="onPageScroll">
+    <navbar-comp v-if="showNavbar" default-tab="Home" :current-tab="tab" :tabs-list="tabsList">
+      <q-img
+        class="main-logo pointer"
+        :src="SpaceXLogo"
+        @click="navigateTo('Home')"
+      />
+    </navbar-comp>
+    <q-page-container class="page-wrapper">
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script lang="ts">
+import NavbarComp from 'src/components/molecules/NavbarComp.vue'
+import SpaceXLogo from '@assets/svg/spaceX-white-logo.svg'
+import mixins from '@mixins/mixins'
 import { defineComponent } from 'vue'
-
+import { Tab } from '@models/tabsModel'
 export default defineComponent({
   name: 'MainLayout',
-
-  components: {
-  },
-
   data () {
-    const tab = 'tab1'
-    return {
-      tab
+    const tab = ''
+    const tabsList: Tab[] = [
+      {
+        name: 'Home',
+        icon: 'home'
+      },
+      {
+        name: 'Launch Form',
+        icon: 'rocket'
+      }
+    ]
+    return { tab, tabsList, SpaceXLogo }
+  },
+  components: {
+    NavbarComp
+  },
+  mixins: [mixins],
+  computed: {
+    showNavbar () {
+      if (this.$route && (this.$route.name === 'Home' || this.$route.name === 'Launch Form' || !this.$route.name)) {
+        return true
+      }
+      return false
     }
   },
-
-  methods: {
-    navigateTo (pageName: string) {
-      console.log(pageName)
-      this.$router.push({ name: pageName })
-    },
-    onPageScroll (event: Event): void {
-      const element = event.target as HTMLElement
-      const toolbarElement = document.getElementById('main-toolbar') as HTMLElement
-      if (element && toolbarElement && element.scrollTop >= 400) {
-        toolbarElement.classList.add('blur-effect')
-      } else {
-        toolbarElement.classList.remove('blur-effect')
-      }
+  watch: {
+    $route: {
+      handler (newVal, oldVal) {
+        if (newVal && newVal.name) {
+          this.tab = newVal.name
+        }
+      },
+      immediate: true
+    }
+  },
+  mounted () {
+    if (localStorage.tabName) {
+      this.tab = localStorage.tabName
     }
   }
 })
 </script>
 <style lang="scss" scoped>
-  .toolbar{
-    position: absolute;
-    display: flex;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    color:#ffffff;
-    justify-content: space-between;
-    background: transparent;
-    height: 80px;
-    z-index: 1;
-    transition: 0.5s ease;
-  }
-  .blur-effect{
-    backdrop-filter: blur(15px);
-  }
   .page-wrapper{
     background: #121212;
     overflow-y:scroll;
     height: 100vh;
-    max-height: 100vh;
   }
   .main-logo{
     height: 80px;

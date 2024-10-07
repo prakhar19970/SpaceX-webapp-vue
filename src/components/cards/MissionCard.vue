@@ -1,33 +1,37 @@
 <template>
   <div class="card" v-for="launchData in launchList" :key="launchData.id" @click="goToLaunchInfoPage(launchData.id)">
-    <div class="fw-600 f-24 text-white">{{ launchData.mission_name }}</div>
+    <div class="flex justify-between items-center no-wrap">
+      <div class="card-title text-white ellipsis q-mr-md">{{ launchData.mission_name }}</div>
+      <info-text-comp
+        v-if="launchData?.launch_date_utc"
+        class="card-body-title" icon-name="event"
+        :info-text="launchData.launch_year"
+      />
+    </div>
     <q-separator color="grey-5" class="q-my-sm"/>
-    <info-text-comp
-      v-if="launchData?.rocket"
-      class="f-16 fw-500"
-      icon-name="rocket"
-      :info-text="launchData?.rocket?.rocket_name"
-    />
-    <info-text-comp
-      v-if="launchData?.launch_date_utc"
-      class="f-16 fw-500" icon-name="event"
-      :info-text="getFormattedDate(launchData.launch_date_utc)"
-    />
-    <div class="fw-500 f-16">Article Shortcut :-</div>
-    <info-text-comp
-      v-if="launchData?.links?.article_link"
-      class="f-16 fw-500" icon-name="article"
-    >
-      <a class="link-text" :href="launchData?.links?.article_link">{{launchData?.links?.article_link}}</a>
-    </info-text-comp>
+    <template  v-if="launchData?.details">
+      <div v-if="launchData?.details" class="card-body-title">Details</div>
+      <info-text-comp
+        v-if="launchData?.details"
+        class="card-body-title"
+      >
+      {{stringEllipsis(launchData?.details, 90)}}
+      </info-text-comp>
+    </template>
+    <template v-else>
+      Mission Details not available. <br>Click More to See other details.
+    </template>
+    <div class="flex flex-1 items-end justify-end" @click.stop="goToLaunchInfoPage(launchData.id)">
+      <div class="text-orange-4">More...</div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import InfoTextComp from '../atoms/InfoTextComp.vue'
-import mixins from '../../mixins/mixins'
-import { LaunchInfo } from '../../models/launchModel'
+import mixins from '@mixins/mixins'
+import { LaunchInfo } from '@models/launchModel'
 export default defineComponent({
   name: 'MissionCard',
   components: { InfoTextComp },
@@ -71,17 +75,34 @@ export default defineComponent({
   padding: 16px;
   gap: 8px;
   cursor: pointer;
+  opacity: 1;
+  transition: opacity 1.5s ease;
 }
 .details-section{
   height:40px;
 }
-.link-text{
-  color: #ffffff;
-  overflow-wrap: anywhere;
+.card-title{
+  font-size: 24px;
+  font-weight: 600;
 }
+
+.card-body-title{
+  font-size: 16px;
+  font-weight: 500;
+}
+
 @media only screen and (max-width: 600px) {
   .card{
     width: 100%;
+  }
+  .card-title{
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .card-body-title{
+    font-size: 12px;
+    font-weight: 500;
   }
 }
 </style>

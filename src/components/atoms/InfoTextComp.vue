@@ -28,7 +28,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .info-text-wrapper{
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 8px;
 }
 </style>

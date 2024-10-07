@@ -1,5 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
-
+import LaunchDetailsPage from 'src/pages/launches/LaunchDetailsPage.vue'
+import HomePage from 'src/pages/launches/HomePage.vue'
+import LaunchFormPage from 'src/pages/launches/LaunchFormPage.vue'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -7,32 +9,31 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        component: () => import('src/pages/launches/HomePage.vue')
+        component: HomePage
       },
       {
         path: '/launch',
-        component: () => import('src/pages/launches/HomePage.vue')
+        component: HomePage
       },
       {
         path: '/launch/home',
         name: 'Home',
-        component: () => import('src/pages/launches/HomePage.vue')
+        component: HomePage
       },
       {
         path: '/launch/launch-form',
         name: 'Launch Form',
-        component: () => import('src/pages/launches/LaunchFormPage.vue')
+        component: LaunchFormPage
       },
       {
-        path: '/launch/:id',
+        path: '/launch/launch-details/:id',
         name: 'Launch Details Page',
-        component: () => import('src/pages/launches/LaunchDetailsPage.vue')
+        component: LaunchDetailsPage
       }
     ]
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
+  // Default Error Page
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
