@@ -38,7 +38,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import mixins from '@mixins/mixins'
+import mixins from 'src/mixins/mixins'
 import { mapActions, mapGetters } from 'vuex'
 import { SortOptions } from '@models/sortOptions'
 export default defineComponent({

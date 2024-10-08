@@ -28,7 +28,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { LaunchInfo } from '@models/launchModel'
-import mixins from '@mixins/mixins'
+import mixins from 'src/mixins/mixins'
 import { mapActions, mapGetters } from 'vuex'
 export default defineComponent({
   name: 'SearchComp',
