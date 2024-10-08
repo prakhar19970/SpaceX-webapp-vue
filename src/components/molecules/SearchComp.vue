@@ -94,6 +94,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     position: relative;
+    width : 100%;
 }
 .input-field {
     background: $surface-dark-1;
@@ -116,6 +117,13 @@ export default defineComponent({
 :deep(){
   .q-field__native{
     color: white;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .search-wrapper{
+    width : 100%;
+    margin-bottom : 16px;
   }
 }
 </style>

@@ -4,9 +4,9 @@
     <q-img class="hero-img" loading="lazy" :src="heroImg" fit="cover"/>
   </div>
   <div class="hero-title q-my-xl">LAUNCHES</div>
-  <div class="flex row q-mb-lg q-px-lg no-wrap items-center justify-between">
-    <search-comp class="flex-1 q-mr-lg" />
-    <sort-comp :options-list="sortOptions" class="flex justify-end"/>
+  <div class="flex row q-mb-lg q-px-lg items-center justify-between">
+    <sort-comp :options-list="sortOptions" class="flex flex-1 justify-end q-mb-md"/>
+    <search-comp class="flex-1" />
   </div>
   <div class="q-mb-lg">
     <div class="cards-section q-mx-lg">
