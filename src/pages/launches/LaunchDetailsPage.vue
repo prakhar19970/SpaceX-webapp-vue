@@ -47,7 +47,7 @@
 import { defineComponent } from 'vue'
 import InfoTextComp from 'src/components/atoms/InfoTextComp.vue'
 import { LaunchInfo } from '@models/launchModel'
-import mixins from '@mixins/mixins'
+import mixins from 'src/mixins/mixins'
 import NavbarComp from 'src/components/molecules/NavbarComp.vue'
 import missionImg from '@assets/jpg/spacex-cover-starlink.jpg'
 export default defineComponent({
