@@ -138,6 +138,7 @@ export default defineComponent({
   font-weight: 500;
   padding-left: 24px;
   padding-right: 24px;
+  text-align: center;
 }
 .input-field{
   background: #2d2d2d;
@@ -177,7 +178,7 @@ export default defineComponent({
     padding-left: 8px;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 820px) {
   .input-field {
     width: 100%;
   }
