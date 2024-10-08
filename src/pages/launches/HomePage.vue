@@ -51,25 +51,39 @@ export default defineComponent({
     ...mapGetters('missions', ['launchList', 'searchQuery'])
   },
   created () {
-    this.getAllMissionsLaunchList()
-    this.reloadState()
+    this.getAllMissionsLaunchList() // function for loading all the Launch Missions list
     if (!localStorage.currentIndex) {
-      this.updateLaunchList()
+      this.updateLaunchList() // function for loading initial launch missions list  if the count does not exisits.
+    } else {
+      this.reloadState() // function for loading launch missions data if the count of documents loaded before is present.
     }
   },
   methods: {
     ...mapActions('missions', ['getAllMissionsLaunchList', 'updateLaunchList', 'reloadState']),
+
+    // function to detect the page srcoll
     onPageScroll (event: Event): void {
       const element = event.target as HTMLElement
       if (element) {
+        // this will give us the scroll position of scroll for homepage-wrapper
         const scrollTop = element.scrollTop
+
+        // this will give us the total height of the element's content (homepage-wrapper) in our case
         const scrollHeight = element.scrollHeight
         const toolbarElement = document.getElementById('main-toolbar') as HTMLElement
 
-        /* Floor values are taken to avoid any decimal values issues */
+        /* Floor values are taken to avoid any decimal values issues
+           here we find the difference between the total height of container and scroll position of cursor
+           then we will comapare it with the client height (which is visible height of the container)
+
+           on finding less value than the visible height, (our cursor has reached near to bottom of our page)
+           now a loader is triggered and launch list is updated by fetching more data.
+        */
         const heightDiff = Math.floor(scrollHeight - scrollTop)
         const scrollPositionAtBottom = heightDiff <= Math.floor(element.clientHeight)
 
+        /* we take a delay of one second once scrollPositionAtBottom is reached ,
+           this helps with smooth execution of the loader */
         if (scrollPositionAtBottom && !this.loading && !this.searchQuery) {
           this.loading = true
           setTimeout(() => {
@@ -78,9 +92,9 @@ export default defineComponent({
           }, 1000)
         }
         if (toolbarElement && element.scrollTop >= 30) {
-          toolbarElement.classList.add('blur-effect')
+          toolbarElement.classList.add('blur-effect') // gives a blur background to the toolbar
         } else {
-          toolbarElement.classList.remove('blur-effect')
+          toolbarElement.classList.remove('blur-effect') // reverts the blur background of the toolbar
         }
       }
     }
