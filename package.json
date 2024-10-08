@@ -2,7 +2,7 @@
   "name": "spacex-webapp-vue",
   "version": "0.0.1",
   "description": "A Quasar Project",
-  "productName": "spacex-webapp-vue",
+  "productName": "SpaceX Web App",
   "author": "prakhar19970 <prakharshukla20160@gmail.com>",
   "private": true,
   "scripts": {
