@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 import LaunchDetailsPage from 'src/pages/launches/LaunchDetailsPage.vue'
 import HomePage from 'src/pages/launches/HomePage.vue'
 import LaunchFormPage from 'src/pages/forms/LaunchFormPage.vue'
+import ErrorPage from 'src/pages/ErrorPage.vue'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -36,7 +37,7 @@ const routes: RouteRecordRaw[] = [
   // Default Error Page
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue')
+    component: ErrorPage
   }
 ]
 
