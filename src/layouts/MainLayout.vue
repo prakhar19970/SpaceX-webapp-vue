@@ -16,7 +16,7 @@
 <script lang="ts">
 import NavbarComp from 'src/components/molecules/NavbarComp.vue'
 import SpaceXLogo from '@assets/svg/spaceX-white-logo.svg'
-import mixins from 'src/mixins/mixins'
+import mixins from '../mixins/mixins'
 import { defineComponent } from 'vue'
 import { Tab } from '@models/tabsModel'
 export default defineComponent({

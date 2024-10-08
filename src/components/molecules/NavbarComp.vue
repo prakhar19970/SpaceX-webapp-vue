@@ -12,7 +12,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import mixins from 'src/mixins/mixins'
+import mixins from '../../mixins/mixins'
 import { Tab } from '@models/tabsModel'
 export default defineComponent({
   name: 'NavbarComp',

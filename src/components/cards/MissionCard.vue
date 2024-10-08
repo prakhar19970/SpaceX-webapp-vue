@@ -30,7 +30,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import InfoTextComp from '../atoms/InfoTextComp.vue'
-import mixins from 'src/mixins/mixins'
+import mixins from '../../mixins/mixins'
 import { useQuasar } from 'quasar'
 import { LaunchInfo } from '@models/launchModel'
 export default defineComponent({

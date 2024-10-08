@@ -55,7 +55,7 @@ import { defineComponent } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { minLength, required, helpers } from '@vuelidate/validators'
 import { LaunchFormModel } from '@models/launchFormModel' // Adjust the import as necessary
-import mixins from 'src/mixins/mixins'
+import mixins from '../../mixins/mixins'
 import { mapActions, mapGetters } from 'vuex'
 import { useQuasar } from 'quasar'
 export default defineComponent({
